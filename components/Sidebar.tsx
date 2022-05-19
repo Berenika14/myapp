@@ -35,6 +35,20 @@ const navMenu = [
     route: "/library",
   },
 ];
+
+const musicMenu = [
+  {
+    name: "Create PlayList",
+    icon: MdPlaylistAdd,
+    route: "/",
+  },
+  {
+    name: "Favorites",
+    icon: MdFavorite,
+    route: "/favorite",
+  },
+];
+const playlist = new Array(30).fill(1).map((_, i) => `Playlist ${i + 1}`);
 const Sidebar = () => {
   return (
     <Box
@@ -44,7 +58,7 @@ const Sidebar = () => {
       paddingX="5px"
       color="gray"
     >
-      <Box paddingY="20px">
+      <Box paddingY="20px" height="100%">
         <Box width="120px" marginBottom="20px" paddingX="20px">
           <NextImage src="/logoapp.svg" width={120} height={60} />
         </Box>
@@ -62,6 +76,43 @@ const Sidebar = () => {
                       ></ListIcon>
                       {menu.name}
                     </LinkOverlay>
+                  </NextLink>
+                </LinkBox>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+
+        <Box>
+          <Box marginTop="20px">
+            <List spacing={2}>
+              {musicMenu.map((item) => (
+                <ListItem paddingX="20px" fontSize="16px" key={item.name}>
+                  <LinkBox>
+                    <NextLink href={item.route} passHref>
+                      <LinkOverlay>
+                        <ListIcon
+                          as={item.icon}
+                          color="white"
+                          marginRight="20px"
+                        ></ListIcon>
+                        {item.name}
+                      </LinkOverlay>
+                    </NextLink>
+                  </LinkBox>
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+        </Box>
+        <Divider marginTop="15px" color="gray.800"></Divider>
+        <Box height="66%" overflowY="auto" paddingY="20px">
+          <List spacing={2}>
+            {playlist.map((item) => (
+              <ListItem paddingX="20px" key={item}>
+                <LinkBox>
+                  <NextLink href="/" passHref>
+                    <LinkOverlay>{item}</LinkOverlay>
                   </NextLink>
                 </LinkBox>
               </ListItem>
