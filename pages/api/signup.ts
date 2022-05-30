@@ -5,7 +5,7 @@ import prisma from "../../lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const salt = bycrypt.genSalSync();
+  const salt = bycrypt.genSaltSync();
   const { email, password } = req.body;
   let user;
 
@@ -40,4 +40,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       secure: process.env.NODE_ENV === "production",
     })
   );
+
+  res.json(user);
 };
